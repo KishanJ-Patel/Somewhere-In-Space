@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BulletScript : MonoBehaviour
+{
+    //public variables
+    [Header("Float")]
+    public float speed;
+
+    [Header("Game Object")]
+    public GameObject impactEffect;
+
+    [Header("Do Not Touch")]
+    public int BulletCloneMoveOperatorNum;
+    public Vector3 TargetPoint;
+    public RaycastHit hit;
+    public GameObject impactEffectClone;
+
+    //private variables
+    private float step;
+
+    void Update()
+    {
+        step = speed * Time.deltaTime;
+
+        if(BulletCloneMoveOperatorNum == 1)
+        {
+            transform.LookAt(worldPosition: TargetPoint);
+            transform.position = Vector3.MoveTowards(current: transform.position, target: TargetPoint, maxDistanceDelta: step);
+            if(transform.position == TargetPoint)
+            {
+                Destroy(obj: gameObject);
+
+                impactEffectClone = Instantiate(original: impactEffect, position: hit.point, rotation: Quaternion.LookRotation(hit.normal));
+                impactEffectClone.SetActive(value: true);
+            }
+        }
+
+        if(BulletCloneMoveOperatorNum == 2)
+        {
+            transform.LookAt(worldPosition: TargetPoint);
+            transform.position = Vector3.MoveTowards(current: transform.position, target: TargetPoint, maxDistanceDelta: step);
+            if (transform.position == TargetPoint)
+            {
+                Destroy(obj: gameObject);
+            }
+        }
+    }
+}

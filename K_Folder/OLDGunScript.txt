@@ -1,0 +1,83 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GunScript : MonoBehaviour
+{
+    //public variables
+    [Header("Game Object")]
+    public GameObject BulletOriginal;
+    public GameObject BulletCloneSummonPoint; 
+    public GameObject PlayerCamera;
+    public GameObject MuzzleFlash;
+    public GameObject MuzzleFlashSummonPoint;
+    public GameObject Target_Destroy_Effect_Green;
+    public GameObject Target_Destroy_Effect_Red;
+
+    [Header("Audio Source")]
+    public AudioClip BulletShotSound;
+
+    [Header("Do Not Touch")]
+    public Vector3 HitPoint;
+    public bool RayCastHitStatus;
+    public RaycastHit hit;
+    public GameObject Target_Destroy_Effect_Green_Clone;
+    public GameObject Target_Destroy_Effect_Red_Clone;
+
+    //private variables
+    private GameObject BulletClone;
+    private GameObject MuzzleFlashClone;
+    private Vector3 BulletCloneSummonPointPosition;
+    private Quaternion BulletCloneSummonPointRotation;
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnFireButtonPress();
+        }    
+    }
+
+    public void OnFireButtonPress()
+    {   
+        BulletCloneSummonPointPosition = BulletCloneSummonPoint.transform.position;
+        BulletCloneSummonPointRotation = BulletCloneSummonPoint.transform.rotation;
+
+        BulletClone = Instantiate(original: BulletOriginal, position: BulletCloneSummonPointPosition, rotation: BulletCloneSummonPointRotation);
+        BulletClone.SetActive(value: true);
+
+        PlayerCamera.GetComponent<PlayerCamScript>().SetRayCastHitStatusForGunScript();
+        
+        if(RayCastHitStatus == true)
+        {
+            PlayerCamera.GetComponent<PlayerCamScript>().SetHitPointForGunScriptWhenRayCastHitStatusTrue();
+        }
+
+        if(RayCastHitStatus == false)
+        {
+            PlayerCamera.GetComponent<PlayerCamScript>().SetHitPointForGunScriptWhenRayCastHitStatusFalse();
+        }
+
+        if (RayCastHitStatus == true)
+        {   
+            BulletClone.GetComponent<BulletScript>().BulletCloneMoveOperatorNum = 1;
+        }
+
+        if(RayCastHitStatus == false)
+        {
+            BulletClone.GetComponent<BulletScript>().BulletCloneMoveOperatorNum = 2;
+        }
+
+        MuzzleFlashClone = Instantiate(original: MuzzleFlash, position: MuzzleFlashSummonPoint.transform.position, rotation: MuzzleFlashSummonPoint.transform.rotation);
+        MuzzleFlashClone.SetActive(value: true);
+        Destroy(obj: MuzzleFlashClone, t: 0.2f);
+
+        AudioSource.PlayClipAtPoint(clip: BulletShotSound, position: BulletCloneSummonPointPosition);
+    }
+
+    public void SetTargetPointForBulletScript()
+    {
+        BulletClone.GetComponent<BulletScript>().TargetPoint = HitPoint;
+        BulletClone.GetComponent<BulletScript>().hit = hit;
+    }
+}

@@ -1,0 +1,509 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Target_Movement_Script : MonoBehaviour
+{
+    //public variables
+    [Header("Game Object")]
+    public GameObject Target_Spawner_And_Manager_1;
+    public GameObject InLyr_Ln_1_Point_1;
+    public GameObject InLyr_Ln_1_Point_2;
+    public GameObject InLyr_Ln_1_Point_3;
+    public GameObject InLyr_Ln_1_Point_4;
+    public GameObject InLyr_Ln_1_Point_5;
+    public GameObject InLyr_Ln_1_Point_6;
+    public GameObject InLyr_Ln_1_Point_7;
+    public GameObject InLyr_Ln_2_Point_1;
+    public GameObject InLyr_Ln_2_Point_2;
+    public GameObject InLyr_Ln_2_Point_3;
+    public GameObject InLyr_Ln_2_Point_4;
+    public GameObject InLyr_Ln_2_Point_5;
+    public GameObject InLyr_Ln_2_Point_6;
+    public GameObject InLyr_Ln_2_Point_7;
+    public GameObject OutLyr_Ln_1_Point_1;
+    public GameObject OutLyr_Ln_1_Point_2;
+    public GameObject OutLyr_Ln_1_Point_3;
+    public GameObject OutLyr_Ln_1_Point_4;
+    public GameObject OutLyr_Ln_1_Point_5;
+    public GameObject OutLyr_Ln_1_Point_6;
+    public GameObject OutLyr_Ln_2_Point_1;
+    public GameObject OutLyr_Ln_2_Point_2;
+    public GameObject OutLyr_Ln_2_Point_3;
+    public GameObject OutLyr_Ln_2_Point_4;
+    public GameObject OutLyr_Ln_2_Point_5;
+    public GameObject OutLyr_Ln_2_Point_6;
+    public GameObject OutLyr_Ln_3_Point_1;
+    public GameObject OutLyr_Ln_3_Point_2;
+    public GameObject OutLyr_Ln_3_Point_3;
+    public GameObject OutLyr_Ln_3_Point_4;
+    public GameObject OutLyr_Ln_3_Point_5;
+    public GameObject OutLyr_Ln_3_Point_6;
+
+    //private variables
+    private int LyrNum;
+    private int InLyrLnNum;
+    private int InLyrColNum;
+    private int InLyrLnNumSetStopNum;
+    private int OutLyrLnNum;
+    private int OutLyrColNum;
+    private int OutLyrNumSetStopNum;
+    private float InLyr_Speed;
+    private float OutLyr_Speed;
+
+    void Awake()
+    {
+        LyrNum = Random.Range(min: 1, max: 9);
+    }
+
+    void Update()
+    {   
+        if (LyrNum % 2 == 0) // Inner Layer
+        {
+            InLyrColNumSet();
+
+            if (InLyrColNum == 0)
+            {
+                if (InLyrLnNumSetStopNum == 0)
+                {
+                    InLyrLnNumSet();
+                }
+
+                if (InLyrLnNumSetStopNum == 1)
+                {
+                    if (InLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_1_Point_1.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (InLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_2_Point_1.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (InLyrColNum == 1)
+            {
+                if (InLyrLnNumSetStopNum == 1)
+                {
+                    InLyrLnNumSet();
+                }
+
+                if (InLyrLnNumSetStopNum == 2)
+                {
+                    if (InLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_1_Point_2.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (InLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_2_Point_2.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (InLyrColNum == 2)
+            {
+                if (InLyrLnNumSetStopNum == 2)
+                {
+                    InLyrLnNumSet();
+                }
+
+                if (InLyrLnNumSetStopNum == 3)
+                {
+                    if (InLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_1_Point_3.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (InLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_2_Point_3.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (InLyrColNum == 3)
+            {
+                if (InLyrLnNumSetStopNum == 3)
+                {
+                    InLyrLnNumSet();
+                }
+
+                if (InLyrLnNumSetStopNum == 4)
+                {
+                    if (InLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_1_Point_4.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (InLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_2_Point_4.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (InLyrColNum == 4)
+            {
+                if (InLyrLnNumSetStopNum == 4)
+                {
+                    InLyrLnNumSet();
+                }
+
+                if (InLyrLnNumSetStopNum == 5)
+                {
+                    if (InLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_1_Point_5.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (InLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_2_Point_5.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (InLyrColNum == 5)
+            {
+                if (InLyrLnNumSetStopNum == 5)
+                {
+                    InLyrLnNumSet();
+                }
+
+                if (InLyrLnNumSetStopNum == 6)
+                {
+                    if (InLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_1_Point_6.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (InLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_2_Point_6.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (InLyrColNum == 6)
+            {
+                if (InLyrLnNumSetStopNum == 6)
+                {
+                    InLyrLnNumSet();
+                }
+
+                if (InLyrLnNumSetStopNum == 7)
+                {
+                    if (InLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_1_Point_7.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (InLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: InLyr_Ln_2_Point_7.transform.position, maxDistanceDelta: InLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (InLyrColNum == 7)
+            {
+                Destroy(obj: gameObject);
+            }
+        }
+
+        if (LyrNum % 2 != 0) // Outer Layer
+        {
+            OutLyrColNumSet();
+
+            if (OutLyrColNum == 0)
+            {
+                if (OutLyrNumSetStopNum == 0)
+                {
+                    OutLyrLnNumSet(); 
+                }
+
+                if (OutLyrNumSetStopNum == 1)
+                {
+                    if (OutLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_1_Point_1.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_2_Point_1.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 3)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_3_Point_1.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (OutLyrColNum == 1)
+            {
+                if (OutLyrNumSetStopNum == 1)
+                {
+                    OutLyrLnNumSet();
+                }
+
+                if (OutLyrNumSetStopNum == 2)
+                {
+                    if (OutLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_1_Point_2.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_2_Point_2.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 3)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_3_Point_2.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (OutLyrColNum == 2)
+            {
+                if (OutLyrNumSetStopNum == 2)
+                {
+                    OutLyrLnNumSet();
+                }
+
+                if (OutLyrNumSetStopNum == 3)
+                {
+                    if (OutLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_1_Point_3.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_2_Point_3.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 3)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_3_Point_3.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (OutLyrColNum == 3)
+            {
+                if (OutLyrNumSetStopNum == 3)
+                {
+                    OutLyrLnNumSet();
+                }
+
+                if (OutLyrNumSetStopNum == 4)
+                {
+                    if (OutLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_1_Point_4.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_2_Point_4.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 3)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_3_Point_4.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (OutLyrColNum == 4)
+            {
+                if (OutLyrNumSetStopNum == 4)
+                {
+                    OutLyrLnNumSet();
+                }
+
+                if (OutLyrNumSetStopNum == 5)
+                {
+                    if (OutLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_1_Point_5.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_2_Point_5.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 3)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_3_Point_5.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (OutLyrColNum == 5)
+            {
+                if (OutLyrNumSetStopNum == 5)
+                {
+                    OutLyrLnNumSet();
+                }
+
+                if (OutLyrNumSetStopNum == 6)
+                {
+                    if (OutLyrLnNum == 1)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_1_Point_6.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 2)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_2_Point_6.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+
+                    if (OutLyrLnNum == 3)
+                    {
+                        transform.position = Vector3.MoveTowards(current: transform.position, target: OutLyr_Ln_3_Point_6.transform.position, maxDistanceDelta: OutLyr_Speed * Time.deltaTime);
+                    }
+                }
+            }
+
+            if (OutLyrColNum == 6)
+            {
+                Destroy(obj: gameObject);
+            }
+        }
+    }
+    
+    private void InLyrLnNumSet()
+    {
+        InLyrLnNum = Random.Range(min: 1, max: 9);
+        
+        if (InLyrLnNum % 2 == 0)
+        {
+            InLyrLnNum = 1;
+        }
+
+        else
+        {
+            InLyrLnNum = 2;
+        }
+
+        InLyr_Speed = Random.Range(min: 2f, max: 2f);
+
+        InLyrLnNumSetStopNum++;
+    }
+
+    private void InLyrColNumSet()
+    {
+        if (transform.position == Target_Spawner_And_Manager_1.transform.position)
+        {
+            InLyrColNum = 0;
+        }
+
+        if (transform.position == InLyr_Ln_1_Point_1.transform.position || transform.position == InLyr_Ln_2_Point_1.transform.position)
+        {
+            InLyrColNum = 1;
+        }
+
+        if (transform.position == InLyr_Ln_1_Point_2.transform.position || transform.position == InLyr_Ln_2_Point_2.transform.position)
+        {
+            InLyrColNum = 2;
+        }
+
+        if (transform.position == InLyr_Ln_1_Point_3.transform.position || transform.position == InLyr_Ln_2_Point_3.transform.position)
+        {
+            InLyrColNum = 3;
+        }
+
+        if (transform.position == InLyr_Ln_1_Point_4.transform.position || transform.position == InLyr_Ln_2_Point_4.transform.position)
+        {
+            InLyrColNum = 4;
+        }
+
+        if (transform.position == InLyr_Ln_1_Point_5.transform.position || transform.position == InLyr_Ln_2_Point_5.transform.position)
+        {
+            InLyrColNum = 5;
+        }
+
+        if (transform.position == InLyr_Ln_1_Point_6.transform.position || transform.position == InLyr_Ln_2_Point_6.transform.position)
+        {
+            InLyrColNum = 6;
+        }
+
+        if (transform.position == InLyr_Ln_1_Point_7.transform.position || transform.position == InLyr_Ln_2_Point_7.transform.position)
+        {
+            InLyrColNum = 7;
+        }
+    }
+
+    private void OutLyrLnNumSet()
+    {
+        OutLyrLnNum = Random.Range(min: 1, max: 31);
+
+        if (OutLyrLnNum == 1 || OutLyrLnNum == 4 || OutLyrLnNum == 7 || OutLyrLnNum == 10 || OutLyrLnNum == 13 || OutLyrLnNum == 16 || OutLyrLnNum == 19 || OutLyrLnNum == 22 || OutLyrLnNum == 25 || OutLyrLnNum == 28)
+        {
+            OutLyrLnNum = 1;
+        }
+
+        if (OutLyrLnNum == 2 || OutLyrLnNum == 5 || OutLyrLnNum == 8 || OutLyrLnNum == 11 || OutLyrLnNum == 14 || OutLyrLnNum == 17 || OutLyrLnNum == 20 || OutLyrLnNum == 23 || OutLyrLnNum == 26 || OutLyrLnNum == 29)
+        {
+            OutLyrLnNum = 2;
+        }
+
+        if (OutLyrLnNum == 3 || OutLyrLnNum == 6 || OutLyrLnNum == 9 || OutLyrLnNum == 12 || OutLyrLnNum == 15 || OutLyrLnNum == 18 || OutLyrLnNum == 21 || OutLyrLnNum == 24 || OutLyrLnNum == 27 || OutLyrLnNum == 30)
+        {
+            OutLyrLnNum = 3;
+        }
+
+        OutLyr_Speed = Random.Range(min: 2f, max: 2f);
+
+        OutLyrNumSetStopNum++;
+    }
+
+    private void OutLyrColNumSet()
+    {
+        if (transform.position == Target_Spawner_And_Manager_1.transform.position)
+        {
+            OutLyrColNum = 0;
+        }
+
+        if (transform.position == OutLyr_Ln_1_Point_1.transform.position || transform.position == OutLyr_Ln_2_Point_1.transform.position || transform.position == OutLyr_Ln_3_Point_1.transform.position)
+        {
+            OutLyrColNum = 1;
+        }
+
+        if (transform.position == OutLyr_Ln_1_Point_2.transform.position || transform.position == OutLyr_Ln_2_Point_2.transform.position || transform.position == OutLyr_Ln_3_Point_2.transform.position)
+        {
+            OutLyrColNum = 2;
+        }
+
+        if (transform.position == OutLyr_Ln_1_Point_3.transform.position || transform.position == OutLyr_Ln_2_Point_3.transform.position || transform.position == OutLyr_Ln_3_Point_3.transform.position)
+        {
+            OutLyrColNum = 3;
+        }
+
+        if (transform.position == OutLyr_Ln_1_Point_4.transform.position || transform.position == OutLyr_Ln_2_Point_4.transform.position || transform.position == OutLyr_Ln_3_Point_4.transform.position)
+        {
+            OutLyrColNum = 4;
+        }
+
+        if (transform.position == OutLyr_Ln_1_Point_5.transform.position || transform.position == OutLyr_Ln_2_Point_5.transform.position || transform.position == OutLyr_Ln_3_Point_5.transform.position)
+        {
+            OutLyrColNum = 5;
+        }
+
+        if (transform.position == OutLyr_Ln_1_Point_6.transform.position || transform.position == OutLyr_Ln_2_Point_6.transform.position || transform.position == OutLyr_Ln_3_Point_6.transform.position)
+        {
+            OutLyrColNum = 6;
+        }
+    }
+    
+}

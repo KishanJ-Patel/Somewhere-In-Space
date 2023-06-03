@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerCamScript : MonoBehaviour
+{   
+    //public variables
+    [Header("Float")]
+    public float range;
+    
+    [Header("Game Object")]
+    public GameObject Gun;
+   
+    //private variables
+    private RaycastHit hit;
+    private bool RayCastHitStatus;
+    private Vector3 HitPoint;
+
+    void Update()
+    {
+        RayCastHitStatus = Physics.Raycast(origin: transform.position, direction: transform.forward,out hit, maxDistance: range);
+
+        HitPoint = hit.point;
+
+    }
+
+    public void SetRayCastHitStatusForGunScript()
+    {
+        Gun.GetComponent<GunScript>().RayCastHitStatus = RayCastHitStatus;
+    }
+    
+    public void SetHitPointForGunScriptWhenRayCastHitStatusTrue()
+    {
+        Gun.GetComponent<GunScript>().HitPoint = HitPoint;
+        Gun.GetComponent<GunScript>().hit = hit;
+        Gun.GetComponent<GunScript>().SetTargetPointForBulletScript();
+    }
+
+    public void SetHitPointForGunScriptWhenRayCastHitStatusFalse()
+    {
+        Gun.GetComponent<GunScript>().HitPoint = transform.position + (transform.forward * range);
+        Gun.GetComponent<GunScript>().hit = hit;
+        Gun.GetComponent<GunScript>().SetTargetPointForBulletScript();
+    }
+}
